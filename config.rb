@@ -23,8 +23,10 @@ end
 # use Rack::CommonLogger, logger
 
 # initialize json
-require 'json'
-require 'active_support'
+require 'oj'
+# require 'yajl'
+# require 'json'
+# require 'active_support'
 # ActiveSupport::JSON::Encoding.escape_html_entities_in_json = true
 
 # initialize ActiveRecord

@@ -27,7 +27,6 @@ GEM
     dalli (2.6.0)
     eventmachine (1.0.0)
     i18n (0.6.1)
-    json (1.7.5)
     kgio (2.7.4)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -37,6 +36,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     mysql2 (0.3.11)
+    oj (2.0.0)
     polyglot (0.3.3)
     pony (1.4)
       mail (> 2.0)
@@ -86,9 +86,9 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   dalli
-  json
   kgio
   mysql2
+  oj
   pony
   pry
   rainbows

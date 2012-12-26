@@ -3,15 +3,18 @@ source "https://rubygems.org"
 gem 'sinatra'
 
 group :development do
-  gem 'sinatra-contrib'
   gem 'pry'
   gem 'thin'
+  gem 'sinatra-contrib'
 end
 
 gem 'unicorn'
 gem 'rainbows'
 
-gem 'json'
+gem 'oj'
+# gem 'yajl-ruby'
+# gem 'json'
+
 gem 'pony'
 
 gem 'mysql2'
