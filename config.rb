@@ -32,8 +32,14 @@ require 'oj'
 # initialize ActiveRecord
 require 'active_record'
 ActiveRecord::Base.establish_connection YAML::load(File.open('config/database.yml'))[ENV["RACK_ENV"]]
-ActiveRecord::Base.logger = logger
-ActiveSupport.on_load(:active_record) {self.include_root_in_json = false}
+# ActiveRecord::Base.logger = logger
+ActiveSupport.on_load(:active_record) do
+  self.include_root_in_json = false
+  self.default_timezone = :local
+  self.time_zone_aware_attributes = false
+  self.logger = logger
+  # self.observers = :cacher, :garbage_collector, :forum_observer
+end
 
 # initialize memcache
 require 'dalli'
