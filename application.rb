@@ -7,10 +7,8 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 # Set environment
 ENV['RACK_ENV'] ||= "development"
 
-# Set library requirements
 require 'sinatra'
 require 'sinatra/reloader' if development?
-require 'json'
 
 # Set project configuration
 require File.expand_path("../config", __FILE__)

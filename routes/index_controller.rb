@@ -11,5 +11,5 @@ end
   
 get '/example.json' do
   content_type :json
-  { :key1 => 'value1', :key2 => 'value2' }.to_json
+  { :key1 => '<html>value1</html>', :key2 => 'value2' }.to_json
 end
