@@ -2,12 +2,6 @@ source "https://rubygems.org"
 
 gem 'sinatra'
 
-group :development do
-  gem 'pry'
-  gem 'thin'
-  gem 'sinatra-contrib'
-end
-
 gem 'unicorn'
 gem 'rainbows'
 
@@ -21,4 +15,15 @@ gem 'mysql2'
 gem 'activerecord'
 gem 'dalli'
 gem 'kgio'
-gem "second_level_cache", :git => "https://github.com/csdn-dev/second_level_cache.git"
+gem "second_level_cache", :git => "git://github.com/csdn-dev/second_level_cache.git"
+
+group :development do
+  gem 'thin'
+  gem 'pry'
+  gem 'sinatra-contrib'
+end
+
+group :test do
+  gem 'minitest', "~>2.6.0", :require => "minitest/autorun"
+  gem 'factory_girl'
+end
