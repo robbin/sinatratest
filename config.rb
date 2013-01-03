@@ -54,3 +54,6 @@ SecondLevelCache.configure do |config|
   config.logger = logger
   config.cache_key_prefix = 'domain'
 end
+
+# release thread current connection return to connection pool in multi-thread mode
+use ActiveRecord::ConnectionAdapters::ConnectionManagement
