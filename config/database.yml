@@ -9,7 +9,7 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.htmldevelopment:
 development:    
-  adapter: mysql2
+  adapter: em_mysql2
   encoding: utf8
   reconnect: false
   database: blog
@@ -32,11 +32,11 @@ test:
   host: localhost
 
 production:
-  adapter: mysql2
+  adapter: em_mysql2
   encoding: utf8
   reconnect: false
   database: blog
-  pool: 5
+  pool: 10
   username: root
   password: fankai
   host: localhost

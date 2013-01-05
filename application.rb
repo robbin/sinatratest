@@ -8,6 +8,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 ENV['RACK_ENV'] ||= "development"
 
 require 'sinatra'
+require 'sinatra/synchrony'
 require 'sinatra/reloader' if development?
 
 # Set project configuration

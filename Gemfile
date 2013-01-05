@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
+gem 'sinatra-synchrony'
 
 gem 'unicorn'
 gem 'rainbows'
@@ -14,6 +15,7 @@ gem 'mysql2'
 gem 'activerecord'
 gem 'redis'
 gem 'hiredis'
+gem 'em-synchrony'
 gem 'redis-activesupport'
 gem "second_level_cache", :git => "git://github.com/csdn-dev/second_level_cache.git"
 

@@ -24,7 +24,7 @@ when "development"
 else
   logger = ::Logger.new("/dev/null")
 end
-# use Rack::CommonLogger, logger
+use Rack::CommonLogger, logger
 
 # initialize json
 require 'oj'
@@ -34,6 +34,7 @@ require 'oj'
 
 # initialize ActiveRecord
 require 'active_record'
+require 'em-synchrony/activerecord'
 ActiveRecord::Base.establish_connection YAML::load(File.open('config/database.yml'))[ENV["RACK_ENV"]]
 # ActiveRecord::Base.logger = logger
 ActiveSupport.on_load(:active_record) do
@@ -45,8 +46,11 @@ ActiveSupport.on_load(:active_record) do
 end
 
 # initialize memcache
+require 'redis'
+require 'hiredis'
+require 'em-synchrony'
 require 'redis-activesupport'
-CACHE = ActiveSupport::Cache::RedisStore.new :host => "127.0.0.1", :driver => :hiredis
+CACHE = ActiveSupport::Cache::RedisStore.new :host => "127.0.0.1", :driver => :synchrony
 
 # initialize ActiveRecord Cache
 require 'second_level_cache'
@@ -57,4 +61,4 @@ SecondLevelCache.configure do |config|
 end
 
 # release thread current connection return to connection pool in multi-thread mode
-use ActiveRecord::ConnectionAdapters::ConnectionManagement
+# use ActiveRecord::ConnectionAdapters::ConnectionManagement

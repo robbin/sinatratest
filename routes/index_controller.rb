@@ -6,6 +6,7 @@ end
 get '/post/:id' do
   content_type :json
   p = Post.find params[:id]
+  Post.find_by_sql "SELECT SLEEP(1);"
   p.to_json
 end
   
