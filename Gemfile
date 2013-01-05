@@ -7,14 +7,14 @@ gem 'rainbows'
 
 gem 'oj'
 # gem 'yajl-ruby'
-# gem 'json'
 
 gem 'pony'
 
 gem 'mysql2'
 gem 'activerecord'
-gem 'dalli'
-gem 'kgio'
+gem 'redis'
+gem 'hiredis'
+gem 'redis-activesupport'
 gem "second_level_cache", :git => "git://github.com/csdn-dev/second_level_cache.git"
 
 group :development do

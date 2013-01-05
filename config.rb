@@ -29,7 +29,6 @@ end
 # initialize json
 require 'oj'
 # require 'yajl'
-# require 'json'
 # require 'active_support'
 # ActiveSupport::JSON::Encoding.escape_html_entities_in_json = true
 
@@ -46,10 +45,8 @@ ActiveSupport.on_load(:active_record) do
 end
 
 # initialize memcache
-require 'dalli'
-require 'active_support/cache/dalli_store'
-Dalli.logger = logger
-CACHE = ActiveSupport::Cache::DalliStore.new("127.0.0.1")
+require 'redis-activesupport'
+CACHE = ActiveSupport::Cache::RedisStore.new :host => "127.0.0.1", :driver => :hiredis
 
 # initialize ActiveRecord Cache
 require 'second_level_cache'
