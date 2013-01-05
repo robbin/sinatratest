@@ -14,11 +14,15 @@ end
 require 'logger'
 Dir.mkdir('log') unless File.exist?('log')
 class ::Logger; alias_method :write, :<<; end
-logger = ::Logger.new("log/#{ENV["RACK_ENV"]}.log")
-if ENV["RACK_ENV"] == "production"
-  logger.level = Logger::WARN
+case ENV["RACK_ENV"]
+when "production"
+  logger = ::Logger.new("log/production.log")
+  logger.level = ::Logger::WARN
+when "development"
+  logger = ::Logger.new(STDOUT)
+  logger.level = ::Logger::DEBUG
 else
-  logger.level = Logger::DEBUG
+  logger = ::Logger.new("/dev/null")
 end
 # use Rack::CommonLogger, logger
 
