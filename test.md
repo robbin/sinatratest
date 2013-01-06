@@ -55,12 +55,27 @@ Time 30.47 25.28 28.55s
 
 ## siege -c10 -r50 http://localhost:8080/ (rainbows 2 *16 threads)
 
+### redis-store
+CPU 2%
+Mem 53MB, 50MB
+Time 29.24 25.25 27.26 
+
 ### Dalli
 CPU 2%
 Mem 49MB, 47MB
 Time 26.24 23.20 26.23
 
-### redis-store
+### without dalli
+CPU 3%
+Mem 51MB, 48MB
+Time 26.25 25.22 28.28
+
+### unicorn 2 processes with dalli
 CPU 2%
-Mem 53MB, 50MB
-Time 29.24 25.25 27.26 
+Mem 49MB, 47MB
+Time 30.25 27.20 27.25 
+
+### unicorn 2 processes without dalli
+CPU 2%
+Mem 50MB, 47MB
+Time 32.24 29.24 25.22
