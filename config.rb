@@ -59,5 +59,11 @@ SecondLevelCache.configure do |config|
   config.cache_key_prefix = 'domain'
 end
 
+# initialize I18n
+I18n.default_locale = 'zh_cn'
+Dir.glob(File.expand_path("../locale", __FILE__) + '/**/*.yml').each do |file|
+  I18n.load_path << file
+end
+
 # release thread current connection return to connection pool in multi-thread mode
 use ActiveRecord::ConnectionAdapters::ConnectionManagement

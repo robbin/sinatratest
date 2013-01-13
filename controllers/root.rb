@@ -1,5 +1,5 @@
 get '/' do
-  p = Post.find 1
+  p = Post.find :first
   "Hello world! #{p.name}\n"
 end
 

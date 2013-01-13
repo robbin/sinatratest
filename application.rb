@@ -14,7 +14,7 @@ require 'sinatra/reloader' if development?
 require File.expand_path("../config", __FILE__)
 
 # Set autoload directory
-%w{models helpers routes lib}.each do |dir|
+%w{models controllers lib}.each do |dir|
   Dir.glob(File.expand_path("../#{dir}", __FILE__) + '/**/*.rb').each do |file|
     require file
   end    
