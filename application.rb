@@ -17,7 +17,5 @@ require File.expand_path("../config", __FILE__)
 %w{models controllers lib}.each do |dir|
   Dir.glob(File.expand_path("../#{dir}", __FILE__) + '/**/*.rb').each do |file|
     require file
-  end    
+  end
 end
-
-
