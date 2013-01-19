@@ -25,6 +25,7 @@ GEM
     coderay (1.0.8)
     daemons (1.1.9)
     dalli (2.6.0)
+    database_cleaner (0.9.1)
     eventmachine (1.0.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -78,6 +79,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   dalli
+  database_cleaner
   factory_girl
   kgio
   minitest (~> 2.6.0)
