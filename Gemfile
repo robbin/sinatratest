@@ -3,9 +3,6 @@ source "https://rubygems.org"
 gem 'rack'
 gem 'sinatra'
 
-gem 'unicorn'
-gem 'rainbows'
-
 gem 'oj'
 # gem 'yajl-ruby'
 
@@ -15,7 +12,7 @@ gem 'dalli', :require => 'active_support/cache/dalli_store'
 gem 'kgio'
 gem "second_level_cache", :git => "git://github.com/csdn-dev/second_level_cache.git"
 
-gem 'rack'
+gem 'rake'
 # gem 'pony'   # pony must be after activerecord
 
 group :development do
