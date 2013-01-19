@@ -1,17 +1,62 @@
-require 'rubygems'
+configure do
+  # = Configuration =
+  set :run,             false
+  set :show_exceptions, development?
+  set :raise_errors,    development?
+  set :logging,         true
+  set :static,          false # your upstream server should deal with those (nginx, Apache)
+end
 
-# Set up gems listed in the Gemfile.
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __FILE__)
-require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+configure :production do
+end  
 
-# Set environment
-ENV['RACK_ENV'] ||= "development"
+# initialize log
+require 'logger'
+Dir.mkdir('log') unless File.exist?('log')
+class ::Logger; alias_method :write, :<<; end
+case ENV["RACK_ENV"]
+when "production"
+  logger = ::Logger.new("log/production.log")
+  logger.level = ::Logger::WARN
+when "development"
+  logger = ::Logger.new(STDOUT)
+  logger.level = ::Logger::DEBUG
+else
+  logger = ::Logger.new("/dev/null")
+end
+# use Rack::CommonLogger, logger
 
-require 'sinatra'
-require 'sinatra/reloader' if development?
+# initialize json
+# require 'oj'
+# require 'yajl'
+# require 'active_support'
+# ActiveSupport::JSON::Encoding.escape_html_entities_in_json = true
 
-# Set project configuration
-require File.expand_path("../config", __FILE__)
+# initialize ActiveRecord
+# require 'active_record'
+ActiveRecord::Base.establish_connection YAML::load(File.open('config/database.yml'))[ENV["RACK_ENV"]]
+# ActiveRecord::Base.logger = logger
+ActiveSupport.on_load(:active_record) do
+  self.include_root_in_json = false
+  self.default_timezone = :local
+  self.time_zone_aware_attributes = false
+  self.logger = logger
+  # self.observers = :cacher, :garbage_collector, :forum_observer
+end
+
+# initialize memcache
+# require 'dalli'
+# require 'active_support/cache/dalli_store'
+Dalli.logger = logger
+CACHE = ActiveSupport::Cache::DalliStore.new("127.0.0.1")
+
+# initialize ActiveRecord Cache
+# require 'second_level_cache'
+SecondLevelCache.configure do |config|
+  config.cache_store = CACHE
+  config.logger = logger
+  config.cache_key_prefix = 'domain'
+end
 
 # Set autoload directory
 %w{models controllers lib}.each do |dir|
@@ -19,3 +64,6 @@ require File.expand_path("../config", __FILE__)
     require file
   end
 end
+
+# release thread current connection return to connection pool in multi-thread mode
+use ActiveRecord::ConnectionAdapters::ConnectionManagement

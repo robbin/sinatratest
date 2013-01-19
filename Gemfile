@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'rake'
+gem 'rack'
 gem 'sinatra'
 
 gem 'unicorn'
@@ -8,15 +8,15 @@ gem 'rainbows'
 
 gem 'oj'
 # gem 'yajl-ruby'
-# gem 'json'
 
-gem 'pony'
-
+gem 'activerecord', :require => 'active_record'
 gem 'mysql2'
-gem 'activerecord', require: 'active_record'
-gem 'dalli'
+gem 'dalli', :require => 'active_support/cache/dalli_store'
 gem 'kgio'
 gem "second_level_cache", :git => "git://github.com/csdn-dev/second_level_cache.git"
+
+gem 'rack'
+# gem 'pony'   # pony must be after activerecord
 
 group :development do
   gem 'thin'
@@ -27,4 +27,5 @@ end
 group :test do
   gem 'minitest', "~>2.6.0", :require => "minitest/autorun"
   gem 'factory_girl'
+  gem 'database_cleaner'
 end

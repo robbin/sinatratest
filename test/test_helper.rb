@@ -1,5 +1,5 @@
 ENV["RACK_ENV"] = "test"
-require File.expand_path('../../application', __FILE__)
+require File.expand_path('../../boot', __FILE__)
 
 require 'test/unit'
 require 'rack/test'
