@@ -44,7 +44,10 @@ ActiveSupport.on_load(:active_record) do
   # self.observers = :cacher, :garbage_collector, :forum_observer
 end
 
-# initialize memcache
+# load project config
+APP_CONFIG = YAML.load_file(File.expand_path("../config", __FILE__) + '/app_config.yml')[ENV["RACK_ENV"]]
+
+# initialize memcached
 # require 'dalli'
 # require 'active_support/cache/dalli_store'
 Dalli.logger = logger
