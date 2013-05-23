@@ -27,13 +27,10 @@ end
 # use Rack::CommonLogger, logger
 
 # initialize json
-# require 'oj'
-# require 'yajl'
 # require 'active_support'
 # ActiveSupport::JSON::Encoding.escape_html_entities_in_json = true
 
 # initialize ActiveRecord
-# require 'active_record'
 ActiveRecord::Base.establish_connection YAML::load(File.open('config/database.yml'))[ENV["RACK_ENV"]]
 # ActiveRecord::Base.logger = logger
 ActiveSupport.on_load(:active_record) do
@@ -67,6 +64,3 @@ end
     require file
   end
 end
-
-# release thread current connection return to connection pool in multi-thread mode
-use ActiveRecord::ConnectionAdapters::ConnectionManagement

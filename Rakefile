@@ -43,10 +43,6 @@ namespace :db do
     end
   end
   
-  # desc "Migrate the database through scripts in db/migrate. Target specific version with VERSION=x"
-  # task :migrate do
-  #   ActiveRecord::Migrator.migrate('db/migrate', ENV["VERSION"] ? ENV["VERSION"].to_i : nil )
-  
   desc 'run migrations'
   task migrate: :connect do
     version = get_env 'VERSION'

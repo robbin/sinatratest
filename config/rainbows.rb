@@ -2,7 +2,7 @@
 Rainbows! do
   use :ThreadPool
   # use :ThreadSpawn
-  worker_connections 16
+  worker_connections 64
 end
 
 # paths and things

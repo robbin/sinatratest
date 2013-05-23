@@ -4,7 +4,6 @@ gem 'rack'
 gem 'sinatra'
 
 gem 'oj'
-# gem 'yajl-ruby'
 
 gem 'activerecord', '~> 3.2', :require => 'active_record'
 gem 'mysql2'
